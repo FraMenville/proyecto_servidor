@@ -1,0 +1,14 @@
+/* Asegura que el cuerpo ocupe al menos el alto de la ventana */
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+/* Espaciado adicional para el contenido debajo del navbar fijo */
+.section {
+    padding-top: 4rem;
+}
+
+/* Opcional: Estilos para enlaces activos en el navbar */
+.navbar-item.is-active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}

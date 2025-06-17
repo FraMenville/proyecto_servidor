@@ -1,0 +1,21 @@
+{% extends "errors/error_base.html" %}
+
+{% block title %}Error del servidor{% endblock %}
+
+{% block content %}
+<section class="hero is-fullheight is-error">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <span class="error-icon">💥</span>
+            <h1 class="title is-1">500</h1>
+            <h2 class="subtitle is-3">Error interno del servidor</h2>
+            <p>Algo salió mal en nuestro lado. Por favor intenta más tarde.</p>
+            {% if debug %}
+            <div class="notification is-danger mt-4">
+                <strong>Debug:</strong> {{ error }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

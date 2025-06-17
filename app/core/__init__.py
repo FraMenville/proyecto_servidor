@@ -1,0 +1,1 @@
+from core.scrapper import Scraper
