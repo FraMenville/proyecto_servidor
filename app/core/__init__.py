@@ -1,1 +1,1 @@
-from core.scrapper import Scraper
+from app.core.scrapperf1 import Scrapper

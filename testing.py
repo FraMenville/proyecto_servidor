@@ -1,6 +1,7 @@
-import requests
+from app.core import Scrapper
 
-url = "https://lat.motorsport.com/f1/results/2025/gp-de-espana-653362/?st=RACE"
+scrap = Scrapper()
 
-response = requests.get(url)
-print(response.text)
+resultados = scrap.get_race_results()
+for resultado in resultados:
+    print(f"Piloto: {resultado["piloto"]} en posición: #{resultado["posicion"]}")
