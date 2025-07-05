@@ -8,7 +8,7 @@ from typing import Optional, List, Dict
 from app.applog import get_logger
 from app.settings import Config
 
-logger = get_logger(f"{Config.get_app_name()}: Scraper Module")
+logger = get_logger(f"{Config.get_app_name}: Scraper Module")
 
 class Scraper:
     def __init__(self) -> None:
@@ -77,12 +77,13 @@ class Scraper:
             logger.error(f"Error al tratar de parsear el row: {e}")
             return 
 
+    @staticmethod
     def is_valid_url(url: str) -> bool:
-            return re.match(r'^https?:\/\/.+\..+', url) is not None
+        return re.match(r"^https?://[^\s]+$", url) is not None
 
     def fetch_results(self, url: str) -> List[dict]:
         """Obtiene los resultados de una carrera"""
-        if not self.is_valid_url(url):
+        if not Scraper.is_valid_url(url):
             logger.error(f"URL inválida: {url}")
             return []
         
@@ -95,7 +96,7 @@ class Scraper:
 
     def get_race_results(self, url: str) -> list:
         """Método de obtención de resultados, sólo para pruebas del scraper."""
-        if not self.is_valid_url(url):
+        if not Scraper.is_valid_url(url):
             logger.error(f"URL inválida: {url}")
             return []
         
