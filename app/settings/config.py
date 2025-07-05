@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from typing import Dict
 
 class Config:
     def __init__(self):
@@ -11,21 +12,31 @@ class Config:
         self.AUTHOR_NAME: str = os.getenv("AUTHOR_NAME", "Freddy")
 
     @classmethod
-    def get_url_base(self) -> str:
+    def get_url_base(cls) -> str:
         """Devuelve la url para el scraper."""
-        return self.URL_BASE
+        return cls.URL_BASE
 
     @classmethod
-    def get_telegram_bot_key(self) -> str:
+    def get_telegram_bot_key(cls) -> str:
         """Devuelve la key del bot de Telegram."""
-        return self.TELEGRAM_BOT_KEY
+        return cls.TELEGRAM_BOT_KEY
     
     @classmethod
-    def get_app_name(self) -> str:
+    def get_app_name(cls) -> str:
         """Devuelve el nombre de la aplicación."""
-        return self.APP_NAME
+        return cls.APP_NAME
     
     @classmethod
-    def get_author_name(self) -> str:
+    def get_author_name(cls) -> str:
         """Devuelve el nombre del autor de la aplicación."""
-        return self.AUTHOR_NAME
+        return cls.AUTHOR_NAME
+
+    @classmethod
+    def load_all(cls) -> Dict[str,str]:
+        """Carga todos los valores configurables."""
+        return {
+            "app": cls.get_app_name(),
+            "author": cls.get_author_name(),
+            "url": cls.get_url_base(),
+            "telegram_key": cls.get_telegram_bot_key()
+        }
