@@ -1,4 +1,26 @@
+import os
+from dotenv import load_dotenv
+
 class Config:
-    #configuracion de SQLAlchemy
-    SQLALCHEMY_DATABASE_URI = "sqlite:///F1Fans.db"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    def __init__(self):
+        load_dotenv()
+        self.TELEGRAM_BOT_KEY: str = os.getenv("TELEGRAM_BOT_KEY")
+        self.LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
+        self.API_URL: str = os.getenv("API_URL", "http://lat.motorsport.com/f1/results/2025/gp-de-espana-653362/?st=RACE")
+        self.APP_NAME: str = os.getenv("APP_NAME", "RayoMcQueen")
+        self.AUTHOR_NAME: str = os.getenv("AUTHOR_NAME", "Freddy")
+
+    @classmethod
+    def get_telegram_bot_key(self) -> str:
+        """Devuelve la key del bot de Telegram."""
+        return self.TELEGRAM_BOT_KEY
+    
+    @classmethod
+    def get_app_name(self) -> str:
+        """Devuelve el nombre de la aplicación."""
+        return self.APP_NAME
+    
+    @classmethod
+    def get_author_name(self) -> str:
+        """Devuelve el nombre del autor de la aplicación."""
+        return self.AUTHOR_NAME
