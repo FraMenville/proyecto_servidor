@@ -2,14 +2,15 @@ import os
 from dotenv import load_dotenv
 from typing import Dict
 
+load_dotenv()
+
 class Config:
-    def __init__(self):
-        load_dotenv()
-        self.TELEGRAM_BOT_KEY: str = os.getenv("TELEGRAM_BOT_KEY")
-        self.LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
-        self.URL_BASE: str = os.getenv("API_URL", "http://lat.motorsport.com/f1/results/2025/gp-de-espana-653362/?st=RACE")
-        self.APP_NAME: str = os.getenv("APP_NAME", "RayoMcQueen")
-        self.AUTHOR_NAME: str = os.getenv("AUTHOR_NAME", "Freddy")
+    """Clase de configuración del proyecto"""
+    TELEGRAM_BOT_KEY: str = os.getenv("TELEGRAM_BOT_KEY")
+    LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
+    URL_BASE: str = os.getenv("API_URL", "http://lat.motorsport.com/f1/results/2025/gp-de-espana-653362/?st=RACE")
+    APP_NAME: str = os.getenv("APP_NAME", "RayoMcQueen")
+    AUTHOR_NAME: str = os.getenv("AUTHOR_NAME", "Freddy")
 
     @classmethod
     def get_url_base(cls) -> str:
@@ -35,8 +36,8 @@ class Config:
     def load_all(cls) -> Dict[str,str]:
         """Carga todos los valores configurables."""
         return {
-            "app": cls.get_app_name(),
-            "author": cls.get_author_name(),
-            "url": cls.get_url_base(),
+            "app":          cls.get_app_name(),
+            "author":       cls.get_author_name(),
+            "url":          cls.get_url_base(),
             "telegram_key": cls.get_telegram_bot_key()
         }
